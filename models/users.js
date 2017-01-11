@@ -2,9 +2,9 @@ var db = require('./db')
 var schema = db.Schema
 
 var usersSchema = new schema({
-    _id: Number,
-    username: String,
-    passsword: String
+    user: String,
+    email: String,
+    password: String
 })
 
 var users = db.model('users', usersSchema)
