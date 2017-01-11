@@ -1,0 +1,22 @@
+{
+  "name": "noti5-test",
+  "version": "1.0.0",
+  "description": "web app as a test for noti5.me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepanshsachdeva/noti5-test.git"
+  },
+  "author": "Deepansh Sachdeva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepanshsachdeva/noti5-test/issues"
+  },
+  "homepage": "https://github.com/deepanshsachdeva/noti5-test#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
