@@ -1,5 +1,6 @@
 var express = require('express')
 var cookieParser = require('cookie-parser')
+var stocks = require('./../models/stocks')
 var router = express.Router()
 
 router.use(cookieParser())
@@ -15,12 +16,30 @@ router.use(function(req, res, next){
 
 router.route('/')
     .get(function(req, res){
-      var user = req.cookies.user
-      res.send(user +' timeline')
+      var userValue = req.cookies.user
+      var startValue = 0, limitValue = 5
+      //res.clearCookie('user')
+      res.render('timeline.ejs', {PgData:{
+        user: userValue,
+        start: startValue,
+        limit: limitValue
+      }})
     })
 
-    .post(function(req, res){
+router.route('/data/:skipValue/:limitValue')
+    .get(function(req, res){
 
+      stocks.aggregate()
+        .skip(Number(req.params.skipValue))
+        .limit(Number(req.params.limitValue))
+        .exec(function(err, docs){
+          if(err){
+            throw err
+          }else{
+            console.log(req.params.skipValue, req.params.limitValue)
+            res.json(docs)
+          }
+      })
     })
 
 module.exports = router

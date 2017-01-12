@@ -1,0 +1,21 @@
+.timeline-feed {
+    max-width: 70%;
+    padding: 15px;
+    margin: 0 auto;
+    border-left: 6px solid dodgerblue;
+    border-right: 6px solid dodgerblue;
+    background-color: lightgrey;
+}
+
+.timeline-feed .heading{
+    text-align: center;
+}
+
+.timeline-feed .action-buttons {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.modal-footer{
+  text-align: center;
+}

@@ -7,6 +7,13 @@ var router = express.Router()
 router.use(cookieParser())
 router.use(bodyParser.urlencoded({extended:true}))
 
+router.route('/end')
+    .get(function(req, res){
+        res.clearCookie('email')
+        res.clearCookie('user')
+        res.redirect('/login')
+    })
+
 router.use(function(req, res, next){
   if(req.cookies.user != undefined){
     res.redirect('/timeline')
@@ -47,5 +54,6 @@ router.route('/')
         }
       })
     })
+
 
 module.exports = router
