@@ -65,3 +65,44 @@ $(window).scroll(function(){
 
     }
 })
+
+function postData(formData){
+
+    $.ajax({
+        url: '/post',
+        method: 'post',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(data){
+            console.log('done :)')
+            console.log(data)
+        },
+        error: function(data){
+            console.log('oops :(')
+            console.log(data)
+        }
+    })
+}
+
+$('.submit').on('click', function(e){
+    e.preventDefault()
+    console.log($('#postForm'))
+    var form = $('#postForm')[0];
+    // var file = $('#inputFile').get(0).files
+    // var caption = $('#inputCaption').val()
+    var formData = new FormData(form)
+
+    console.log(formData)
+
+    // if(file.length == 0){
+    //     alert('select an image to upload')
+    //     return false
+    // }
+
+    
+    // formData.append('imgFile', file)
+    // formData.append('imgCaption', caption)
+
+    postData(formData)
+})

@@ -25,7 +25,7 @@
                         <h4 class="modal-title" id="postModalLabel">Post an image</h4>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="postForm" method="POST" action="/post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="inputFile">Select image</label>
                                 <input type="file" id="inputFile">
@@ -35,11 +35,14 @@
                                 <label for="inputCaption">Caption</label>
                                 <input type="text" class="form-control" id="inputCaption" placeholder="enter a caption">
                             </div>
+                            <div style="text-align: center;">
+                                <button type="button" class="btn btn-primary submit">Post</button>
+                            </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
+                    <!--<div class="modal-footer">
                         <button type="button" class="btn btn-primary">Post</button>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
