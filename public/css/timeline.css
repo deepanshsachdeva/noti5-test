@@ -19,3 +19,17 @@
 .modal-footer{
   text-align: center;
 }
+
+.timeline-feed .timeline-block{
+  text-align: center;
+}
+
+.post-image{
+  height: 80%;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.post-image img{
+  width: auto;
+}

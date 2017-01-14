@@ -11,11 +11,19 @@ $(document).ready(function(){
                     if(data.length > 0){
                         $('#start').val(Number(skip)+Number(limit))
                         for(var i = 0; i < data.length; i++){
-                            htmlData = "<hr><div>"
-                            htmlData += "<h1>"+data[i].Sector+"</h1>"
-                            htmlData += "<h2>"+data[i].Industry+"</h1>"
-                            htmlData += "<h2>"+data[i].Price+"</h1>"
-                            htmlData += "</div>"
+                            // htmlData = "<hr><div>"
+                            // htmlData += "<h1>"+data[i].Sector+"</h1>"
+                            // htmlData += "<h2>"+data[i].Industry+"</h1>"
+                            // htmlData += "<h2>"+data[i].Price+"</h1>"
+                            // htmlData += "</div>"
+                            var postedBy = (getCookie('user')==data[i].postedBy)?'You':data[i].postedBy
+                            var date = formPostDate(new Date(data[i].postedOn))
+                            htmlData = "<hr><div class='timeline-block'>"
+                            htmlData += "<h1><u>"+data[i].imageCaption+"</u></h1>"
+                            htmlData += "<div class='post-image'><img src='/imgs/"+data[i].imageFile+"' alt='post-image' height='300' width='300'></div>"
+                            htmlData += "<h2> posted by "+postedBy+" at "
+                            htmlData += date
+                            htmlData += "</h2></div>"
 
                             $('.timeline-feed').append(htmlData)
                         }
@@ -25,6 +33,15 @@ $(document).ready(function(){
                 error: function(data){
                     alert('somethings wrong dude')
                 }
+            })
+
+            $.each($('img'), function(k, v){
+              v.onload = function(){
+                if(v.height > v.width){
+                  v.height = '100%'
+                  v.width = 'auto'
+                }
+              }
             })
 })
 
@@ -44,11 +61,14 @@ $(window).scroll(function(){
                     if(data.length > 0){
                         $('#start').val(Number(skip)+Number(limit))
                         for(var i = 0; i < data.length; i++){
-                            htmlData = "<hr><div>"
-                            htmlData += "<h1>"+data[i].Sector+"</h1>"
-                            htmlData += "<h2>"+data[i].Industry+"</h1>"
-                            htmlData += "<h2>"+data[i].Price+"</h1>"
-                            htmlData += "</div>"
+                          var postedBy = (getCookie('user')==data[i].postedBy)?'You':data[i].postedBy
+                          var date = formPostDate(new Date(data[i].postedOn))
+                          htmlData = "<hr><div class='timeline-block'>"
+                          htmlData += "<h1><u>"+data[i].imageCaption+"</u></h1>"
+                          htmlData += "<div class='post-image'><img src='/imgs/"+data[i].imageFile+"' alt='post-image' height='300' width='300'></div>"
+                          htmlData += "<h2> posted by "+postedBy+" at "
+                          htmlData += date
+                          htmlData += "</h2></div>"
                             $('.timeline-feed').append(htmlData)
                         }
                     }else{
@@ -66,6 +86,12 @@ $(window).scroll(function(){
     }
 })
 
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
 function postData(formData){
 
     $.ajax({
@@ -76,7 +102,7 @@ function postData(formData){
         contentType: false,
         success: function(data){
             console.log('done :)')
-            console.log(data)
+            $('#postModal').modal('toggle')
         },
         error: function(data){
             console.log('oops :(')
@@ -85,24 +111,45 @@ function postData(formData){
     })
 }
 
+function formPostDate(date){
+
+  var result = ""
+  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  var hours = date.getHours()
+  var minutes = date.getMinutes()
+  var ampm = hours >= 12 ? 'pm' : 'am'
+  hours = hours % 12
+  hours = hours ? hours : 12
+  minutes = minutes < 10 ? '0'+minutes : minutes
+  var strTime = hours + ':' + minutes + ' ' + ampm
+
+  result += date.getDate()
+  result += (" "+monthNames[date.getMonth()])
+  result += (" "+date.getFullYear())
+  result += (" "+strTime)
+
+  return result
+}
+
 $('.submit').on('click', function(e){
     e.preventDefault()
-    console.log($('#postForm'))
-    var form = $('#postForm')[0];
-    // var file = $('#inputFile').get(0).files
-    // var caption = $('#inputCaption').val()
-    var formData = new FormData(form)
+    var file = $('#inputFile')[0].files[0]
+    var caption = $('#inputCaption').val()
 
-    console.log(formData)
+    var formData = new FormData()
 
-    // if(file.length == 0){
-    //     alert('select an image to upload')
-    //     return false
-    // }
+    if(file.length == 0){
+        alert('select an image to upload')
+        return false
+    }
 
-    
-    // formData.append('imgFile', file)
-    // formData.append('imgCaption', caption)
+    formData.append('imgFile', file)
+    formData.append('imgCaption', caption)
 
     postData(formData)
+})
+
+$('#postModal').on('hidden.bs.modal', function(){
+  //TODO: refresh page after upload
+  window.location = '/timeline'
 })
