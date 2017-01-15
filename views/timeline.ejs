@@ -11,7 +11,7 @@
                 <h1 class="heading"><%= PgData.user %> Timeline</h1>
                 <div class="action-buttons">
                     <p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">Post</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">Create Post</button>
                         <button type="button" class="btn btn-default" onclick="location.href = '/login/end'">Logout</button>
                     </p>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="postModalLabel">Post an image</h4>
+                        <h4 class="modal-title" id="postModalLabel">Create post</h4>
                     </div>
                     <div class="modal-body">
                         <form id="postForm" method="POST" action="/post" enctype="multipart/form-data">

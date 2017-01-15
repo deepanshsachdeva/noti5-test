@@ -29,4 +29,3 @@ var connectionString = url.format(urlOptions)
 mongoose.connect(connectionString)
 
 module.exports = mongoose
-

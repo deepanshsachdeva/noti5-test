@@ -41,6 +41,16 @@ function getBlockHtml(data){
   return htmlData
 }
 
+function validateFileExtension(field){
+  var ext = field.val().split('.').pop().toLowerCase();
+  if($.inArray(ext, ['png','jpg','jpeg']) == -1) {
+    alert('invalid extension!')
+    field.val("")
+    return false
+  }
+  return true
+}
+
 function postData(formData){
     $.ajax({
         url: '/post',
@@ -62,6 +72,7 @@ function postData(formData){
         error: function(data){
             console.log('oops :(')
             console.log(data)
+            alert('connection error')
         }
     })
 }
@@ -124,6 +135,10 @@ $(document).ready(function(){
       var caption = $('#inputCaption').val()
 
       var formData = new FormData()
+
+      if(!validateFileExtension($('#inputFile'))){
+        return false
+      }
 
       if(file != undefined && file.length == 0){
           alert('select an image to upload')
