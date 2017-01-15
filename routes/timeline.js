@@ -1,6 +1,5 @@
 var express = require('express')
 var cookieParser = require('cookie-parser')
-var stocks = require('./../models/stocks')
 var posts = require('./../models/posts')
 var router = express.Router()
 
@@ -16,31 +15,23 @@ router.use(function(req, res, next){
 
 router.route('/')
     .get(function(req, res){
-      var userValue = req.cookies.user
-      var startValue = 0, limitValue = 5
-      //res.clearCookie('user')
-      res.render('timeline.ejs', {PgData:{
-        user: userValue,
-        start: startValue,
-        limit: limitValue
-      }})
+      var userValue = req.cookies.user, startValue = 0, limitValue = 5
+      res.set({
+        'Cache-Control': 'private, no-cache, no-store, must-revalidate',
+        'Expires': -1,
+        'Pragma': 'no-cache'
+      })
+      res.render('timeline.ejs', {
+        PgData:{
+          user: userValue,
+          start: startValue,
+          limit: limitValue
+        }
+      })
     })
 
 router.route('/data/:skipValue/:limitValue')
     .get(function(req, res){
-
-      // stocks.aggregate()
-      //   .skip(Number(req.params.skipValue))
-      //   .limit(Number(req.params.limitValue))
-      //   .exec(function(err, docs){
-      //     if(err){
-      //       throw err
-      //     }else{
-      //       console.log(req.params.skipValue, req.params.limitValue)
-      //       res.json(docs)
-      //     }
-      // })
-
       posts.aggregate()
         .sort({postedOn:-1})
         .skip(Number(req.params.skipValue))
@@ -50,7 +41,7 @@ router.route('/data/:skipValue/:limitValue')
             throw err
           }else{
             console.log(req.params.skipValue, req.params.limitValue)
-            res.json(docs)
+            res.status(200).json(docs)
           }
       })
     })

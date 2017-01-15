@@ -28,8 +28,33 @@
   height: 80%;
   width: 80%;
   margin: 0 auto;
+  margin-bottom: 15px;
 }
 
 .post-image img{
   width: auto;
+  border: solid 2px cadetblue;
+}
+
+.block-info p{
+  display: inline;
+}
+
+.block-heading p{
+  font-weight: bold;
+  font-size: 40px;
+  text-transform: capitalize;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.timeline-feed .heading{
+  font-size: 60px;
+  text-transform: uppercase;
+  text-shadow: 3px 0px 5px #999;
 }
