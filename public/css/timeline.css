@@ -1,10 +1,11 @@
 .timeline-feed {
-    max-width: 70%;
+    max-width: 90%;
     padding: 15px;
     margin: 0 auto;
     border-left: 6px solid dodgerblue;
     border-right: 6px solid dodgerblue;
     background-color: lightgrey;
+    padding-top: 60px;
 }
 
 .timeline-feed .heading{
@@ -25,15 +26,16 @@
 }
 
 .post-image{
-  height: 80%;
-  width: 80%;
+  /*height: 80%;
+  width: 80%;*/
   margin: 0 auto;
   margin-bottom: 15px;
+  display: inline-block;
+  text-align: center;
 }
 
 .post-image img{
   width: auto;
-  border: solid 2px cadetblue;
 }
 
 .block-info p{
@@ -54,7 +56,47 @@ hr {
 }
 
 .timeline-feed .heading{
-  font-size: 60px;
-  text-transform: uppercase;
+  font-size: 45px;
+  text-transform: capitalize;
   text-shadow: 3px 0px 5px #999;
+}
+
+.effect1{
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+}
+
+
+.effect8
+{
+    position:relative;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.effect8:before, .effect8:after
+{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+    top:10px;
+    bottom:10px;
+    left:0;
+    right:0;
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
+}
+.effect8:after
+{
+    right:10px;
+    left:auto;
+    -webkit-transform:skew(8deg) rotate(3deg);
+    -moz-transform:skew(8deg) rotate(3deg);
+    -ms-transform:skew(8deg) rotate(3deg);
+    -o-transform:skew(8deg) rotate(3deg);
+    transform:skew(8deg) rotate(3deg);
 }

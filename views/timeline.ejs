@@ -4,17 +4,36 @@
         <title>Timeline</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/timeline.css">
+        <link rel="stylesheet" href="/css/lightbox.css">
     </head>
     <body>
         <div id="container">
-            <div class="timeline-feed">
-                <h1 class="heading"><%= PgData.user %> Timeline</h1>
-                <div class="action-buttons">
-                    <p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">Create Post</button>
-                        <button type="button" class="btn btn-default" onclick="location.href = '/login/end'">Logout</button>
-                    </p>
-                </div>
+          <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <form class="navbar-form navbar-left">
+                  <div class="form-group">
+                    <button type="button" class="btn btn-default">
+                      <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" onclick="location.href = '/profile/<%= PgData.user %>'">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= PgData.user.charAt(0).toUpperCase() + PgData.user.substr(1).toLowerCase() %>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#postModal">
+                      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create Post
+                    </button>
+                  </div>
+                </form>
+                <form class="navbar-form navbar-right">
+                  <div class="form-group">
+                    <button type="button" class="btn btn-default" onclick="location.href = '/login/end'">
+                      <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout
+                    </button>
+                  </div>
+                </form>
+            </div>
+          </nav>
+            <div class="timeline-feed effect8">
+              <!--feed data goes in here-->
             </div>
         </div>
         <div class="modal fade" id="postModal" tabindex="-1" role="dialog">
@@ -46,6 +65,7 @@
     <input type="hidden" id="start" value="<%= PgData.start %>">
     <input type="hidden" id="limit" value="<%= PgData.limit %>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/js/lightbox.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/js/timeline.js"></script>
     </body>

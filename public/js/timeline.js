@@ -27,16 +27,17 @@ function formPostDate(date){
 }
 
 function getBlockHtml(data){
-  var postedBy = (getCookie('user')==data.postedBy)?'You':data.postedBy
+  var postedBy = data.postedBy
   var date = formPostDate(new Date(data.postedOn))
   var htmlData = null
 
-  htmlData = "<hr><div class='timeline-block'>"
-  htmlData += "<div class='block-heading'><p class='text-primary'>"+data.imageCaption+"</p></div>"
-  htmlData += "<div class='post-image'><img src='/imgs/"+data.imageFile+"' alt='post-image' height='300' width='300'></div>"
+  htmlData = "<div class='timeline-block'>"
+  htmlData += "<div class='heading'>"+data.imageCaption+"</div>"
+  // htmlData += "<div class='post-image'><img src='/imgs/"+data.imageFile+"' alt='post-image' height='300' width='300'></div>"
+  htmlData += "<div class='post-image effect1'><a href='/imgs/"+data.imageFile+"' data-lightbox='"+data.imageFile+"' data-title='"+data.imageCaption+"'><img src='/imgs/"+data.imageFile+"' alt='post-image' height='300' width='300'></a></div>"
   htmlData += "<div class='block-info'><p class='text-muted'>posted by </p><p class='text-primary'><strong><a href='/profile/"+data.postedBy+"'>"+postedBy+"</a></strong><p class='text-muted'> on </p><p class='text-primary'><strong>"
   htmlData += date
-  htmlData += "<strong></p></div></div>"
+  htmlData += "<strong></p></div></div><hr>"
 
   return htmlData
 }

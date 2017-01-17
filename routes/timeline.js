@@ -32,7 +32,7 @@ router.route('/')
 
 router.route('/data/:skipValue/:limitValue')
     .get(function(req, res){
-      posts.aggregate()
+      posts.aggregate([{"$match":{postedBy:{"$ne": req.cookies.user}}}])
         .sort({postedOn:-1})
         .skip(Number(req.params.skipValue))
         .limit(Number(req.params.limitValue))
