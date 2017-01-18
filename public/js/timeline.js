@@ -34,7 +34,7 @@ function getBlockHtml(data){
   htmlData = "<div class='timeline-block'>"
   //htmlData += "<div class='heading'>"+data.imageCaption+"</div>"
   // htmlData += "<div class='post-image'><img src='/imgs/"+data.imageFile+"' alt='post-image' height='300' width='300'></div>"
-  htmlData += "<div class='post-image effect1'><div class='photograph'><a href='/imgs/"+data.imageFile+"' data-lightbox='"+data.imageFile+"' data-title='"+data.imageCaption+"'>"
+  htmlData += "<div class='post-image shadow-effect'><div class='photograph'><a href='/imgs/"+data.imageFile+"' data-lightbox='"+data.imageFile+"' data-title='"+data.imageCaption+"'>"
   htmlData += "<img src='/imgs/"+data.imageFile+"' alt='post-image' height='300' width='300'>"
   htmlData += "</a><div class='heading'>"+data.imageCaption+"</div></div></div>"
   htmlData += "<div class='block-info'><p class='text-muted'>posted by </p><p class='text-primary'><strong><a href='/profile/"+data.postedBy+"'>"+postedBy+"</a></strong><p class='text-muted'> on </p><p class='text-primary'><strong>"
@@ -64,18 +64,30 @@ function postData(formData){
         success: function(data){
           if(data.resp == 'success'){
             console.log('done :)')
-            $('#postModal').modal('toggle')
-            window.location = '/timeline'
+            $('.submit').attr('disabled', 'disabled').addClass('btn-success').button('complete')
+            setTimeout(function(){
+              //just wait
+              $('.submit').removeClass('btn-success').removeAttr('disabled')
+              $('#postModal').modal('toggle')
+            }, 700)
           }else{
-            alert("Oops! something's wrong")
-            $('#inputFile').val('')
-            $('#inputCaption').val('')
+            $('.submit').attr('disabled', 'disabled').addClass('btn-danger').button('error')
+            setTimeout(function(){
+                $('.submit').removeClass('btn-danger').button('reset').removeAttr('disabled')
+            },400)
           }
         },
         error: function(data){
             console.log('oops :(')
             console.log(data)
-            alert('connection error')
+            $('.submit').attr('disabled', 'disabled').addClass('btn-danger').button('error')
+            setTimeout(function(){
+                $('.submit').removeClass('btn-danger').button('reset').removeAttr('disabled')
+            },400)
+        },
+        complete: function(){
+          $('#inputFile').val('')
+          $('#inputCaption').val('')
         }
     })
 }
@@ -159,11 +171,13 @@ $(document).ready(function(){
       formData.append('imgFile', file)
       formData.append('imgCaption', caption)
 
+      $(this).button('loading')
+
       postData(formData)
     })
 
     $('#postModal').on('hidden.bs.modal', function(){
-      //TODO: still thinking :|
+      $('.submit').button('reset')
     })
 
     $.each($('img'), function(k, v){

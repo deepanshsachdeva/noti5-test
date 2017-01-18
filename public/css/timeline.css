@@ -1,20 +1,19 @@
 .timeline-feed {
-    max-width: 90%;
     padding: 15px;
     margin: 0 auto;
-    border-left: 6px solid dodgerblue;
-    border-right: 6px solid dodgerblue;
+    border-left: 4px solid dodgerblue;
+    border-right: 4px solid dodgerblue;
     background-color: lightgrey;
     padding-top: 60px;
 }
 
 .timeline-feed .heading{
     text-align: center;
-}
-
-.timeline-feed .action-buttons {
-    text-align: center;
-    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 35px;
+    text-transform: capitalize;
+    text-shadow: 3px 0px 5px #999;
 }
 
 .modal-footer{
@@ -30,8 +29,6 @@
 }
 
 .post-image{
-  /*height: 80%;
-  width: 80%;*/
   margin: 0 auto;
   margin-bottom: 15px;
   display: inline-block;
@@ -60,14 +57,6 @@ hr {
   background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
 
-.timeline-feed .heading{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 35px;
-  text-transform: capitalize;
-  text-shadow: 3px 0px 5px #999;
-}
-
 .photograph{
   background-color: #FFF;
   padding-top: 10px;
@@ -76,113 +65,8 @@ hr {
   padding-bottom: 1px;
 }
 
-.effect1{
-    -webkit-box-shadow: 0 10px 6px -6px #777;
-    -moz-box-shadow: 0 10px 6px -6px #777;
-    box-shadow: 0 10px 6px -6px #777;
-}
-
-.effect5
-{
-  position: relative;
-}
-.effect5:before, .effect5:after
-{
-  z-index: -1;
-  position: absolute;
-  content: "";
-  bottom: 25px;
-  left: 10px;
-  width: 50%;
-  top: 80%;
-  max-width:300px;
-  background: #777;
-  -webkit-box-shadow: 0 35px 20px #777;
-  -moz-box-shadow: 0 35px 20px #777;
-  box-shadow: 0 35px 20px #777;
-  -webkit-transform: rotate(-8deg);
-  -moz-transform: rotate(-8deg);
-  -o-transform: rotate(-8deg);
-  -ms-transform: rotate(-8deg);
-  transform: rotate(-8deg);
-}
-.effect5:after
-{
-  -webkit-transform: rotate(8deg);
-  -moz-transform: rotate(8deg);
-  -o-transform: rotate(8deg);
-  -ms-transform: rotate(8deg);
-  transform: rotate(8deg);
-  right: 10px;
-  left: auto;
-}
-
-.effect2
-{
-  position: relative;
-}
-.effect2:before, .effect2:after
-{
-  z-index: -1;
-  position: absolute;
-  content: "";
-  bottom: 15px;
-  left: 10px;
-  width: 50%;
-  top: 80%;
-  max-width:300px;
-  background: #777;
-  -webkit-box-shadow: 0 15px 10px #777;
-  -moz-box-shadow: 0 15px 10px #777;
-  box-shadow: 0 15px 10px #777;
-  -webkit-transform: rotate(-3deg);
-  -moz-transform: rotate(-3deg);
-  -o-transform: rotate(-3deg);
-  -ms-transform: rotate(-3deg);
-  transform: rotate(-3deg);
-}
-.effect2:after
-{
-  -webkit-transform: rotate(3deg);
-  -moz-transform: rotate(3deg);
-  -o-transform: rotate(3deg);
-  -ms-transform: rotate(3deg);
-  transform: rotate(3deg);
-  right: 10px;
-  left: auto;
-}
-
-
-
-.effect8
-{
-    position:relative;
-    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
-.effect8:before, .effect8:after
-{
-    content:"";
-    position:absolute;
-    z-index:-1;
-    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
-    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
-    box-shadow:0 0 20px rgba(0,0,0,0.8);
-    top:10px;
-    bottom:10px;
-    left:0;
-    right:0;
-    -moz-border-radius:100px / 10px;
-    border-radius:100px / 10px;
-}
-.effect8:after
-{
-    right:10px;
-    left:auto;
-    -webkit-transform:skew(8deg) rotate(3deg);
-    -moz-transform:skew(8deg) rotate(3deg);
-    -ms-transform:skew(8deg) rotate(3deg);
-    -o-transform:skew(8deg) rotate(3deg);
-    transform:skew(8deg) rotate(3deg);
+.shadow-effect{
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }

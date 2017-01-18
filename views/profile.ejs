@@ -3,17 +3,22 @@
   <head>
     <title>User Profile</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/profile.css">
   </head>
   <body>
     <div id='container'>
         <% if(pgData.status == 'error' || pgData.status == 'none'){ %>
-          <h3>Message: <%= pgData.messsage %></h3>
+          <div class="alert alert-danger" role="alert" style="text-align:center;">
+            <strong>Error:</strong> invalid user
+          </div>
         <% } else{ %>
-          <h1><u><%= pgData.user %></u></h1>
-          <h2>Email: <%= pgData.email %></h2>
-          <h2>No. of posts: <%= pgData.count %></h2>
+          <div class='user-profile'>
+            <h1><%= pgData.user %></h1>
+            <h3>Email: <a href="mailto:<%= pgData.email %>"><%= pgData.email %></a></h2>
+            <h3>No. of posts: <%= pgData.count %></h2>
+            <a class="btn btn-default" href="/timeline" role="button">Back to timeline</a>
+          </div>
         <% } %>
-        <a class="btn btn-default" href="/timeline" role="button">Back to timeline</a>
     </div>
   </body>
 </html>
