@@ -32,9 +32,11 @@ function getBlockHtml(data){
   var htmlData = null
 
   htmlData = "<div class='timeline-block'>"
-  htmlData += "<div class='heading'>"+data.imageCaption+"</div>"
+  //htmlData += "<div class='heading'>"+data.imageCaption+"</div>"
   // htmlData += "<div class='post-image'><img src='/imgs/"+data.imageFile+"' alt='post-image' height='300' width='300'></div>"
-  htmlData += "<div class='post-image effect1'><a href='/imgs/"+data.imageFile+"' data-lightbox='"+data.imageFile+"' data-title='"+data.imageCaption+"'><img src='/imgs/"+data.imageFile+"' alt='post-image' height='300' width='300'></a></div>"
+  htmlData += "<div class='post-image effect1'><div class='photograph'><a href='/imgs/"+data.imageFile+"' data-lightbox='"+data.imageFile+"' data-title='"+data.imageCaption+"'>"
+  htmlData += "<img src='/imgs/"+data.imageFile+"' alt='post-image' height='300' width='300'>"
+  htmlData += "</a><div class='heading'>"+data.imageCaption+"</div></div></div>"
   htmlData += "<div class='block-info'><p class='text-muted'>posted by </p><p class='text-primary'><strong><a href='/profile/"+data.postedBy+"'>"+postedBy+"</a></strong><p class='text-muted'> on </p><p class='text-primary'><strong>"
   htmlData += date
   htmlData += "<strong></p></div></div><hr>"
@@ -107,9 +109,17 @@ $(document).ready(function(){
 
             if(flag && no_data){
               flag = false
+              htmlLoader = "<div class='loader-img'><img src='/images/ajax-loader.gif' alt='loading'></div>"
+
               $.ajax({
                   url:'/timeline/data/'+skip+'/'+limit,
                   method: 'get',
+                  beforeSend: function(){
+                      $('.timeline-feed').append(htmlLoader)
+                  },
+                  complete: function(){
+                      $('div').remove('.loader-img')
+                  },
                   success: function(data){
                       flag = true;
                       if(data.length > 0){
@@ -163,5 +173,10 @@ $(document).ready(function(){
         v.width = 'auto'
         }
       }
+    })
+
+    lightbox.option({
+        disableScrolling: true,
+        fadeDuration: 300
     })
 })
